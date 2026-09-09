@@ -23,16 +23,16 @@
             font-size: 1.25rem;
         }
 
-        /* 1. LE BANDEAU BLANC QUI PREND TOUTE LA LARGEUR DE L'ÉCRAN */
+        /* BANDEAU BLANC SÉPARÉ */
         header {
             background-color: #ffffff;
-            color: #0d1117; /* Écritures sombres pour le fond blanc */
+            color: #0d1117;
             margin-bottom: 60px;
             padding: 40px 0;
             width: 100%;
         }
 
-        /* Conteneur interne du header pour aligner avec le reste du site */
+        /* Utilisation de space-between pour pousser le logo tout à droite */
         .header-inner {
             max-width: 1100px;
             margin: 0 auto;
@@ -40,44 +40,50 @@
             display: flex;
             flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             gap: 30px;
         }
 
-        .logo {
-            max-height: 100px;
-            width: auto;
-            display: block;
-            flex-shrink: 0;
-        }
         .header-text {
             display: flex;
             flex-direction: column;
         }
 
-        /* Titre et sous-titre adaptés au fond blanc */
         header h1 {
             font-size: 3rem;
             font-weight: 700;
             margin: 0;
-            color: #0d1117; /* Noir */
+            color: #0d1117;
             line-height: 1.1;
         }
         header .subtitle {
-            color: #484f58; /* Gris foncé pour le fond blanc */
+            color: #484f58;
             font-size: 1.4rem;
             margin-top: 8px;
         }
 
-        /* RESPONSIVE : Aligné verticalement si l'écran est petit */
+        /* LOGO À DROITE */
+        .logo {
+            max-height: 100px;
+            width: auto;
+            display: block;
+            flex-shrink: 0;
+            order: 2; /* Force le logo à être en deuxième position */
+        }
+
+        /* RESPONSIVE : Aligné verticalement sur petit écran (le logo repasse en dessous ou s'adapte) */
         @media (max-width: 600px) {
             .header-inner {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 20px;
             }
+            .logo {
+                order: 0; /* Remet le logo dans l'ordre naturel si l'écran est trop petit */
+            }
         }
 
-        /* 2. LE CONTENEUR DU RESTE DU SITE (FOND SOMBRE) */
+        /* RESTE DU SITE (FOND SOMBRE) */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -153,18 +159,17 @@
 </head>
 <body>
 
-    <!-- Le bandeau blanc complet -->
     <header>
         <div class="header-inner">
-            <img src="logo.png" alt="Logo Vagabond Labs" class="logo">
             <div class="header-text">
                 <h1>Vagabond Labs</h1>
                 <div class="subtitle">Laboratoire d'idées et de solutions techniques.</div>
             </div>
+            <!-- Le logo est poussé au bout à droite grâce au CSS flexbox -->
+            <img src="logo.png" alt="Logo Vagabond Labs" class="logo">
         </div>
     </header>
 
-    <!-- Le reste du site sur fond sombre -->
     <div class="container">
 
         <section>
