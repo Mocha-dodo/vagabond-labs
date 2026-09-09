@@ -22,23 +22,27 @@
             padding: 0;
             font-size: 1.25rem;
         }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 30px;
+
+        /* 1. LE BANDEAU BLANC QUI PREND TOUTE LA LARGEUR DE L'ÉCRAN */
+        header {
+            background-color: #ffffff;
+            color: #0d1117; /* Écritures sombres pour le fond blanc */
+            margin-bottom: 60px;
+            padding: 40px 0;
+            width: 100%;
         }
 
-        /* ALIGNEMENT LOGO + TITRES SUR LA MÊME LIGNE */
-        header {
-            margin-bottom: 60px;
-            padding-bottom: 40px;
-            /* Ligne blanche sous les éléments du header */
-            border-bottom: 3px solid #ffffff;
+        /* Conteneur interne du header pour aligner avec le reste du site */
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: 30px;
         }
+
         .logo {
             max-height: 100px;
             width: auto;
@@ -50,27 +54,36 @@
             flex-direction: column;
         }
 
-        /* RESPONSIVE : Le logo passe au-dessus sur mobile si l'écran est trop petit */
+        /* Titre et sous-titre adaptés au fond blanc */
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+            color: #0d1117; /* Noir */
+            line-height: 1.1;
+        }
+        header .subtitle {
+            color: #484f58; /* Gris foncé pour le fond blanc */
+            font-size: 1.4rem;
+            margin-top: 8px;
+        }
+
+        /* RESPONSIVE : Aligné verticalement si l'écran est petit */
         @media (max-width: 600px) {
-            header {
+            .header-inner {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 20px;
             }
         }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 0;
-            color: #fff;
-            line-height: 1.1;
+        /* 2. LE CONTENEUR DU RESTE DU SITE (FOND SOMBRE) */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px 60px 30px;
         }
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1.4rem;
-            margin-top: 8px;
-        }
+
         section {
             margin-bottom: 70px;
         }
@@ -140,15 +153,19 @@
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <!-- Le logo est maintenant à côté des textes -->
+    <!-- Le bandeau blanc complet -->
+    <header>
+        <div class="header-inner">
             <img src="logo.png" alt="Logo Vagabond Labs" class="logo">
             <div class="header-text">
                 <h1>Vagabond Labs</h1>
                 <div class="subtitle">Laboratoire d'idées et de solutions techniques.</div>
             </div>
-        </header>
+        </div>
+    </header>
+
+    <!-- Le reste du site sur fond sombre -->
+    <div class="container">
 
         <section>
             <h2>À propos</h2>
