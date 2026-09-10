@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vagabond Labs</title>
     <style>
-        /* --- STYLE ORIGINEL DE VAGABOND LABS --- */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -14,9 +13,14 @@
             color: #333333;
             line-height: 1.6;
         }
-        .header-container {
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
             text-align: center;
-            padding: 30px 20px 10px 20px;
+            padding: 50px 0;
         }
         h1 {
             margin: 0;
@@ -25,50 +29,8 @@
         }
         .subtitle {
             color: #666;
-            margin: 5px 0 15px 0;
+            margin: 5px 0 0 0;
             font-style: italic;
-        }
-        .logo-placeholder {
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        /* --- NOUVEAU MENU RESPONSIVE (MOBILE & PC) --- */
-        nav {
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            background: #fafafa;
-            padding: 10px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            font-size: 16px;
-            padding: 8px 12px;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: #0076ff; /* Couleur d'accentuation sobre */
-        }
-
-        /* --- CONTENU --- */
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
         }
         section {
             margin-bottom: 40px;
@@ -76,42 +38,36 @@
         h2 {
             border-bottom: 2px solid #333;
             padding-bottom: 5px;
-            margin-top: 30px;
         }
-
-        /* Ajustement Mobile pour le menu */
-        @media (max-width: 480px) {
-            .nav-links {
-                gap: 10px;
-            }
-            .nav-links a {
-                font-size: 14px;
-                padding: 6px 8px;
-            }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 3px solid #666;
+        }
+        .price {
+            font-weight: bold;
+            color: #222;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+            border-top: 1px solid #eee;
         }
     </style>
 </head>
 <body>
 
-<!-- EN-TÊTE D'ORIGINE -->
-<div class="header-container">
-    <div class="logo-placeholder">[ Logo Vagabond Labs ]</div>
-    <h1>Vagabond Labs</h1>
-    <p class="subtitle">Entreprise de bureau d'étude en électronique</p>
-</div>
-
-<!-- LE MENU DEMANDÉ -->
-<nav>
-    <ul class="nav-links">
-        <li><a href="#accueil" class="active">Accueil</a></li>
-        <li><a href="#eshop">E-Shop</a></li>
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="#brevets">Brevets</a></li>
-    </ul>
-</nav>
-
-<!-- SECTIONS DU SITE -->
 <div class="container">
+    <header>
+        <h1>Vagabond Labs</h1>
+        <p class="subtitle">Entreprise de bureau d'étude en électronique</p>
+    </header>
 
     <section id="accueil">
         <h2>Bienvenue</h2>
@@ -119,8 +75,35 @@
         <p>Notre objectif principal : Concrétiser nos rêves.</p>
     </section>
 
-    <!-- Les autres sections (E-Shop, A propos, Brevets) seront construites ici tranquillement -->
+    <section id="projets">
+        <h2>Nos Projets phares</h2>
+        <ul>
+            <li>
+                <strong>Clavier personnalisé</strong><br>
+                Clavier entièrement produit par nos soins, optimisé et sur-mesure pour un confort maximal.<br>
+                <span class="price">Prix indicatif : Sur devis</span>
+            </li>
+            <li>
+                <strong>Petits objets réalisés en PLA</strong><br>
+                Impressions type, pour montrer les capacités de notre parc machine.<br>
+                <span class="price">Prix indicatif : 1€/10-20g. Matériaux disponibles : PLA, ASA, PETG</span>
+            </li>
+            <li>
+                <strong>R&D Électronique</strong><br>
+                Développement et industrialisation de cartes électroniques pour nos projets ou sur demande.<br>
+                <span class="price">Cout développement et production : Sur devis</span>
+            </li>
+        </ul>
+    </section>
 
+    <section id="apropos">
+        <h2>À propos</h2>
+        <p>Vagabond Labs est né de la passion pour l'innovation et le matériel informatique de pointe. Nous mettons nos compétences au service de la création d'outils numériques uniques et performants.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>
+    </footer>
 </div>
 
 </body>
