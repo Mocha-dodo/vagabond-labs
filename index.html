@@ -59,6 +59,49 @@
             color: #666;
             border-top: 1px solid #eee;
         }
+
+        /* --- STYLE DU MENU AJOUTÉ --- */
+        .main-nav {
+            text-align: center;
+            margin-bottom: 40px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .main-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .main-nav li {
+            margin-bottom: 0 !important;
+            padding-left: 0 !important;
+            border-left: none !important;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1em;
+        }
+        .main-nav a:hover {
+            color: #666;
+        }
+
+        /* --- AJUSTEMENT POUR ÉCRANS MOBILES --- */
+        @media (max-width: 480px) {
+            .main-nav ul {
+                gap: 12px;
+            }
+            .main-nav a {
+                font-size: 0.9em;
+            }
+        }
+
+
     </style>
 </head>
 <body>
@@ -68,6 +111,16 @@
         <h1>Vagabond Labs</h1>
         <p class="subtitle">Entreprise de bureau d'étude en électronique</p>
     </header>
+
+        <!-- AJOUT DU MENU HORIZONTAL -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#eshop">E-Shop</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#brevets">Brevets</a></li>
+        </ul>
+    </nav>
 
     <section id="accueil">
         <h2>Bienvenue</h2>
