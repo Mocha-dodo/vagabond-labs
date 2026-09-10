@@ -3,246 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vagabond Labs</title>
+    <title>Vagabond Labs - Boutique</title>
     <style>
+        /* --- STYLE GENERAL & MOBILE-FIRST --- */
         :root {
-            --bg: #0d1117;
-            --surface: #161b22;
-            --text: #c9d1d9;
-            --text-muted: #8b949e;
-            --accent: #58a6ff;
-            --border: #30363d;
+            --primary: #25d366; /* Vert WhatsApp */
+            --dark: #1a1a1a;
+            --light: #f4f4f4;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            font-size: 1.25rem;
+            background-color: var(--light);
+            color: var(--dark);
         }
-
-        /* BANDEAU BLANC SÉPARÉ */
         header {
-            background-color: #ffffff;
-            color: #0d1117;
-            margin-bottom: 60px;
-            padding: 40px 0;
-            width: 100%;
-            border-bottom: 5px solid #ffffff;
-        }
-
-        /* Utilisation de space-between pour pousser le logo tout à droite */
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .header-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 0;
-            color: #0d1117;
-            line-height: 1.1;
-        }
-        header .subtitle {
-            color: #484f58;
-            font-size: 1.4rem;
-            margin-top: 8px;
-        }
-
-        /* LOGO À DROITE */
-        .logo {
-            max-height: 150px;
-            width: auto;
-            display: block;
-            flex-shrink: 0;
-            order: 2; /* Force le logo à être en deuxième position */
-        }
-
-        /* RESPONSIVE : Aligné verticalement sur petit écran (le logo repasse en dessous ou s'adapte) */
-        @media (max-width: 600px) {
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-            .logo {
-                order: 0; /* Remet le logo dans l'ordre naturel si l'écran est trop petit */
-            }
-        }
-
-        /* RESTE DU SITE (FOND SOMBRE) */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 30px 60px 30px;
-        }
-
-        section {
-            margin-bottom: 70px;
-        }
-        h2 {
-            font-size: 1.8rem;
-            color: #fff;
-            border-left: 4px solid var(--accent);
-            padding-left: 15px;
-            margin-bottom: 30px;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        @media (max-width: 800px) {
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
-        }
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 8px;
-        }
-        .card h3 { margin-top: 0; color: #fff; font-size: 1.4rem; margin-bottom: 15px; }
-        .card p { margin-bottom: 0; color: var(--text-muted); font-size: 1.15rem; }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .project-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background: #21262d;
-        }
-        .project-info {
-            padding: 20px;
-        }
-        .project-info h3 { margin: 0 0 10px 0; color: #fff; font-size: 1.3rem; }
-        .project-info p { margin: 0; color: var(--text-muted); font-size: 1.05rem; }
-
-        footer {
-            margin-top: 100px;
-            border-top: 1px solid var(--border);
-            padding-top: 30px;
-            font-size: 1rem;
-            color: var(--text-muted);
+            background: var(--dark);
+            color: white;
+            padding: 15px;
             text-align: center;
+            sticky: top;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .contact-link {
-            color: var(--accent);
-            text-decoration: none;
+        .container {
+            padding: 15px;
+            max-width: 800px;
+            margin: auto;
         }
-        .contact-link:hover { text-decoration: underline; }
+
+        /* --- GRILLE DE PRODUITS --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card h3 { margin: 10px 0 5px 0; }
+        .product-price { font-weight: bold; color: #e43f5a; margin-bottom: 15px; }
+
+        /* --- FORMULAIRES & BOUTONS MOBILE --- */
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px; /* Évite le zoom automatique sur iPhone */
+        }
+        button {
+            width: 100%;
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:active { transform: scale(0.98); }
+
+        /* --- BARRE DE PANIER FLOTTANTE (MOBILE) --- */
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .btn-whatsapp {
+            background: var(--primary);
+            color: white;
+            width: auto;
+            padding: 10px 20px;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-inner">
-            <div class="header-text">
-                <h1>Vagabond Labs</h1>
-                <div class="subtitle">Entreprise de bureau d'étude en électronique</div>
+<header>
+    <h2>Vagabond Labs 🚀</h2>
+    <p>Prototype & Industrialisation</p>
+</header>
+
+<div class="container">
+    <h2>Notre Catalogue</h2>
+
+    <div class="products-grid">
+        <!-- PRODUIT 1: STANDARD -->
+        <div class="product-card">
+            <div>
+                <h3>Clavier Personnalisé</h3>
+                <p>Entièrement produit par nos soins, optimisé et sur-mesure.</p>
             </div>
-            <!-- Le logo est poussé au bout à droite grâce au CSS flexbox -->
-            <img src="logo.png" alt="Logo Vagabond Labs" class="logo">
+            <div>
+                <div class="product-price">149,00 €</div>
+                <button onclick="ajouterAuPanier('Clavier Custom', 149)">Ajouter au panier</button>
+            </div>
         </div>
-    </header>
 
-    <div class="container">
+        <!-- PRODUIT 2: SUR MESURE (IMPRESSION 3D) -->
+        <div class="product-card">
+            <div>
+                <h3>Impression 3D Sur-Mesure</h3>
+                <p>Tarif indicatif : 1€ les 15g (PLA, ASA, PETG).</p>
 
-        <section>
-            <h2>À propos</h2>
-            <p>Bienvenue chez Vagabond Labs. Notre entreprise fondée en 2026 prototype et industrialise des solutions techniques en électronique. <br>
-                Notre objectif principal : Concrétiser nos rêves.</p>
-        </section>
+                <label for="material">Matériau :</label>
+                <select id="material">
+                    <option value="PLA">PLA</option>
+                    <option value="ASA">ASA</option>
+                    <option value="PETG">PETG</option>
+                </select>
 
-        <section>
-            <h2>Nos Services</h2>
-            <div class="grid-2">
-                <div class="card">
-                    <h3>Impression 3D</h3>
-                    <p>Prototypage rapide, modélisation et production de pièces fonctionnelles ou esthétiques adaptées à vos contraintes.<br>
-                        Matériaux disponibles : PLA, ASA, PETG<br>
-                        Taille d'impression : 300x300x300mm<br>
-                        Prix indicatif : 1€/10-20g.</p>
-                </div>
-                <div class="card">
-                    <h3>Développement électronique R&D</h3>
-                    <p>Conception de circuits, prototypage de cartes électroniques et recherche de solutions matérielles innovantes.<br>
-                        Cout développement et production : Sur devis (Les tarifs sont trop variables)
-                    </p>
-                </div>
+                <label for="weight">Poids estimé (en grammes) :</label>
+                <input type="number" id="weight" value="30" min="10">
             </div>
-        </section>
-
-        <section>
-            <h2>Exemple de Productions</h2>
-            <div class="grid-3">
-                <!-- Projet 1 -->
-                <div class="project-card">
-                    <img src="projet1.jpg" alt="Projet 1" class="project-img">
-                    <div class="project-info">
-                        <h3>Petits objets réalisés en PLA</h3>
-                        <p>Impressions type, pour montrer les performances de l'impression</p>
-                    </div>
-                </div>
-                <!-- Projet 2 -->
-                <div class="project-card">
-                    <img src="projet2.jpg" alt="Projet 2" class="project-img">
-                    <div class="project-info">
-                        <h3>Carte electronique</h3>
-                        <p>Cette carte est pilotée avec un PICO 2350 + des outputs personnalisées<br>
-                        + une carcasse 3D fine<br>
-                            + une charnière a couple (comme un ordinateur)<br>
-                            + une ouverture externe pour connecte la carte SD et l'usb C.
-                        </p>
-                    </div>
-                </div>
-                <!-- Projet 3 -->
-                <div class="project-card">
-                    <img src="projet3.jpg" alt="Projet 3" class="project-img">
-                    <div class="project-info">
-                        <h3>Clavier personnalisé</h3>
-                        <p>Clavier entièrement produit par nos soins, avec protocole adapté et optimisation des dimensions.</p>
-                    </div>
-                </div>
+            <div>
+                <button onclick="ajouterImpression3D()">Ajouter l'impression</button>
             </div>
-        </section>
-
-        <section>
-            <h2>Contact</h2>
-            <p>Un projet ? Une question ? Écrivez-nous directement à l'adresse suivante : <br>
-               <a href="mailto:vagabondlabs2026@gmail.com" class="contact-link">vagabondlabs2026@gmail.com</a>
-            </p>
-        </section>
-
-        <footer>
-            <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>
-        </footer>
+        </div>
     </div>
+</div>
+
+<!-- BARRE DE PANIER FLOTTANTE -->
+<div class="cart-bar">
+    <div>
+        <strong>Panier : <span id="cart-count">0</span> article(s)</strong>
+        <div id="cart-total" style="font-size: 14px; color: #555;">Total : 0,00 €</div>
+    </div>
+    <button class="btn-whatsapp" onclick="envoyerCommande()">📱 Commander (WhatsApp)</button>
+</div>
+
+<script>
+    // --- LOGIQUE DU PANIER ---
+    let panier = [];
+
+    function ajouterAuPanier(nom, prix) {
+        panier.push({ nom: nom, prix: prix, details: "Produit standard" });
+        mettreAJourInterface();
+    }
+
+    function ajouterImpression3D() {
+        const mat = document.getElementById('material').value;
+        const poids = document.getElementById('weight').value;
+        // Calcul du prix estimé (1€ par tranche de 15g par exemple)
+        const prixEstime = Math.round((poids / 15) * 100) / 100;
+
+        panier.push({
+            nom: `Impression 3D (${mat})`,
+            prix: prixEstime,
+            details: `Poids: ${poids}g`
+        });
+        mettreAJourInterface();
+    }
+
+    function mettreAJourInterface() {
+        document.getElementById('cart-count').innerText = panier.length;
+        let total = panier.reduce((sum, item) => sum + item.prix, 0);
+        document.getElementById('cart-total').innerText = `Total approx : ${total.toFixed(2)} €`;
+    }
+
+    function envoyerCommande() {
+        if(panier.length === 0) {
+            alert("Votre panier est vide !");
+            return;
+        }
+
+        let numeroTelephone = "33612345678"; // ⚠️ REMPLACEZ PAR VOTRE NUMÉRO (Format international sans le +)
+        let texte = "Bonjour Vagabond Labs ! Je souhaite commander :\n\n";
+
+        panier.forEach((item, index) => {
+            texte += `${index + 1}. ${item.nom} - ${item.details} (${item.prix.toFixed(2)}€)\n`;
+        });
+
+        let total = panier.reduce((sum, item) => sum + item.prix, 0);
+        texte += `\n*Total estimé : ${total.toFixed(2)}€*`;
+
+        // Encodage du texte pour l'URL WhatsApp
+        let urlWhatsApp = `https://wa.me{numeroTelephone}?text=${encodeURIComponent(texte)}`;
+
+        // Ouvre WhatsApp avec le message prêt
+        window.open(urlWhatsApp, '_blank');
+    }
+</script>
 
 </body>
 </html>
