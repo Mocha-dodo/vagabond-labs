@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - Vagabond Labs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Vagabond Labs</h1>
+        <p class="subtitle">Entreprise de bureau d'étude en électronique</p>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="eshop.html">E-Shop</a></li>
+            <li><a href="panier.html" class="active">Panier (<span id="cart-count">0</span>)</a></li>
+            <li><a href="apropos.html">À propos</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <h2>Votre Panier</h2>
+        <div id="cart-empty-msg">Votre panier est actuellement vide.</div>
+        <div id="cart-container" style="display: none;">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix U.</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Injecté par app.js -->
+                </tbody>
+            </table>
+            <div class="cart-summary">
+                Total : <span id="cart-total">0.00</span> €
+            </div>
+            <div style="text-align: right; margin-top: 20px;">
+                <button class="btn" onclick="checkout()">Payer la commande</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>
+    </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

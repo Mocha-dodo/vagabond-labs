@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Shop - Vagabond Labs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Vagabond Labs</h1>
+        <p class="subtitle">Entreprise de bureau d'étude en électronique</p>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="eshop.html" class="active">E-Shop</a></li>
+            <li><a href="panier.html">Panier (<span id="cart-count">0</span>)</a></li>
+            <li><a href="apropos.html">À propos</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <h2>Boutique en ligne</h2>
+        <p>Découvrez nos objets et prestations prêts à commander.</p>
+        <div class="product-grid" id="product-list">
+            <!-- Injecté par app.js -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>
+    </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
