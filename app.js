@@ -98,6 +98,29 @@ function renderEshopPage() {
     });
 }
 
+
+// --- NAVIGATION PAR ONGLETS ---
+function showTab(tabId, element) {
+    // Masque toutes les sections
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    // Retire la classe 'active' de tous les liens du menu
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Affiche l'onglet sélectionné et active son bouton dans le menu
+    const selectedTab = document.getElementById(tabId);
+    if (selectedTab) {
+        selectedTab.classList.add('active');
+    }
+    if (element) {
+        element.classList.add('active');
+    }
+}
+
 // --- RENDU PANIER (Si on est sur panier.html) ---
 function renderCartPage() {
     const cartContainer = document.getElementById('cart-container');
