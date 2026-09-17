@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vagabond Labs</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
     <header>
         <h1>Vagabond Labs</h1>
-        <p class="subtitle">Le bureau des inventeurs libres</p>
+        <p class="subtitle">Entreprise de bureau d'étude en électronique</p>
     </header>
 
     <!-- NAVIGATION PAR ONGLETS -->
@@ -54,7 +55,7 @@
         <h2>Boutique en ligne</h2>
         <p>Découvrez nos objets et prestations prêts à commander.</p>
         <div class="product-grid" id="product-list">
-            <!-- Produits générés en JS -->
+            <!-- Les produits avec leurs images seront générés ici par app.js -->
         </div>
     </section>
 
@@ -74,7 +75,7 @@
                     </tr>
                 </thead>
                 <tbody id="cart-items">
-                    <!-- Éléments panier générés en JS -->
+                    <!-- Éléments panier générés par app.js -->
                 </tbody>
             </table>
             <div class="cart-summary">
@@ -96,5 +97,8 @@
         <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>
     </footer>
 </div>
+
+<!-- L'appel unique vers le fichier JS externe avec forçage du cache ?v=2 -->
+<script src="app.js?v=2"></script>
 </body>
 </html>
