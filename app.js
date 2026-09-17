@@ -87,7 +87,7 @@ function renderEshopPage() {
         card.className = 'product-card';
         card.innerHTML = `
             <div>
-                <img src="${p.image}" alt="${p.name}" class="product-img">
+                <img src="${p.image}" alt="${p.name}" class="product-img" onerror="this.style.display='none'; console.error('Image introuvable :', this.src);">
                 <h3>${p.name}</h3>
                 <p>${p.description}</p>
                 <p class="price">${p.price.toFixed(2)} €</p>
