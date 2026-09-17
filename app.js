@@ -40,14 +40,6 @@ function saveCart() {
     }
 }
 
-function calculateShipping(totalWeight) {
-    if (totalWeight === 0) return 0.00;        // Gratuit (uniquement du dématérialisé)
-    if (totalWeight <= 250) return 4.95;       // Jusqu'à 250g
-    if (totalWeight <= 500) return 6.70;       // Jusqu'à 500g
-    if (totalWeight <= 1000) return 8.25;      // Jusqu'à 1 kg
-    return 10.00;                              // Au-delà de 1 kg
-}
-
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -139,9 +131,6 @@ function renderCartPage() {
     const cartItemsTable = document.getElementById('cart-items');
 
     // Éléments d'affichage des totaux
-    const weightSpan = document.getElementById('cart-weight');
-    const shippingSpan = document.getElementById('cart-shipping');
-    const subtotalSpan = document.getElementById('cart-subtotal');
     const totalSpan = document.getElementById('cart-total');
 
     if (!cartContainer) return;
@@ -157,14 +146,11 @@ function renderCartPage() {
     cartItemsTable.innerHTML = '';
 
     let subtotal = 0;
-    let totalWeight = 0;
 
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
-        const itemWeight = (item.weight || 0) * item.quantity;
 
         subtotal += itemTotal;
-        totalWeight += itemWeight;
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -181,12 +167,6 @@ function renderCartPage() {
         cartItemsTable.appendChild(tr);
     });
 
-    const shippingCost = calculateShipping(totalWeight);
-    const grandTotal = subtotal + shippingCost;
-
-    if (weightSpan) weightSpan.innerText = totalWeight;
-    if (subtotalSpan) subtotalSpan.innerText = subtotal.toFixed(2);
-    if (shippingSpan) shippingSpan.innerText = shippingCost.toFixed(2);
     if (totalSpan) totalSpan.innerText = grandTotal.toFixed(2);
 }
 
