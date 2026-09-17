@@ -1,58 +1,150 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Vagabond Labs</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+// --- CATALOGUE PRODUITS ---
+const products = [
+    {
+        id: 'p1',
+        name: 'Impression PLA 50g',
+        price: 5.00,
+        description: 'Impression 3D sur-mesure en PLA (50g)',
+        stripeLink: 'https://buy.stripe.com/test_1'
+    },
+    {
+        id: 'p2',
+        name: 'Kit Électronique Test',
+        price: 15.00,
+        description: 'Composants pour prototypage rapide',
+        stripeLink: 'https://buy.stripe.com/test_2'
+    },
+    {
+        id: 'p3',
+        name: 'Consulting R&D (1h)',
+        price: 50.00,
+        description: 'Session d\'étude technique de 1h',
+        stripeLink: 'https://buy.stripe.com/test_3'
+    }
+];
 
-<div class="container">
-    <header>
-        <h1>Vagabond Labs</h1>
-        <p class="subtitle">Entreprise de bureau d'étude en électronique</p>
-    </header>
+// --- GESTION DU PANIER (LOCALSTORAGE) ---
+let cart = JSON.parse(localStorage.getItem('vagabond_cart')) || [];
 
-    <nav class="main-nav">
-        <ul>
-            <li><a href="index.html" class="active">Accueil</a></li>
-            <li><a href="eshop.html">E-Shop</a></li>
-            <li><a href="panier.html">Panier (<span id="cart-count">0</span>)</a></li>
-            <li><a href="apropos.html">À propos</a></li>
-        </ul>
-    </nav>
+function saveCart() {
+    localStorage.setItem('vagabond_cart', JSON.stringify(cart));
+    updateCartBadge();
+    if (document.getElementById('cart-container')) {
+        renderCartPage();
+    }
+}
 
-    <section>
-        <h2>Holà</h2>
-        <p>J'ai créé cette boite afin de réaliser l'ordinateur du futur. Et accessoirement je propose mes connaissances pour aider.</p>
-        <p>Mon objectif c'est juste m'amuser un peu le temps de développer mon ordinateur :)</p>
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
 
-        <h2>Nos Projets phares</h2>
-        <ul>
-            <li>
-                <strong>Clavier personnalisé</strong><br>
-                Clavier entièrement produit par nos soins, optimisé et sur-mesure pour un confort maximal.<br>
-                <span class="price">Prix indicatif : Sur devis</span>
-            </li>
-            <li>
-                <strong>Petits objets réalisés en PLA</strong><br>
-                Impressions type, pour montrer les capacités de notre parc machine.<br>
-                <span class="price">Prix indicatif : 1€/10-20g. Matériaux disponibles : PLA, ASA, PETG</span>
-            </li>
-            <li>
-                <strong>R&D Électronique</strong><br>
-                Développement et industrialisation de cartes électroniques pour nos projets ou sur demande.<br>
-                <span class="price">Coût développement et production : Sur devis</span>
-            </li>
-        </ul>
-    </section>
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+    saveCart();
+    alert(`${product.name} ajouté au panier !`);
+}
 
-    <footer>
-        <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>
-    </footer>
-</div>
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+}
 
-<script src="app.js"></script>
-</body>
-</html>
+function changeQuantity(productId, delta) {
+    const item = cart.find(i => i.id === productId);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+            removeFromCart(productId);
+        } else {
+            saveCart();
+        }
+    }
+}
+
+function updateCartBadge() {
+    const badge = document.getElementById('cart-count');
+    if (badge) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        badge.innerText = totalItems;
+    }
+}
+
+// --- RENDU E-SHOP (Si on est sur eshop.html) ---
+function renderEshopPage() {
+    const grid = document.getElementById('product-list');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div>
+                <h3>${p.name}</h3>
+                <p>${p.description}</p>
+                <p class="price">${p.price.toFixed(2)} €</p>
+            </div>
+            <button class="btn" onclick="addToCart('${p.id}')">Ajouter au panier</button>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// --- RENDU PANIER (Si on est sur panier.html) ---
+function renderCartPage() {
+    const cartContainer = document.getElementById('cart-container');
+    const emptyMsg = document.getElementById('cart-empty-msg');
+    const cartItemsTable = document.getElementById('cart-items');
+    const totalSpan = document.getElementById('cart-total');
+
+    if (!cartContainer) return;
+
+    if (cart.length === 0) {
+        cartContainer.style.display = 'none';
+        emptyMsg.style.display = 'block';
+        return;
+    }
+
+    cartContainer.style.display = 'block';
+    emptyMsg.style.display = 'none';
+    cartItemsTable.innerHTML = '';
+
+    let grandTotal = 0;
+
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        grandTotal += itemTotal;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><strong>${item.name}</strong></td>
+            <td>${item.price.toFixed(2)} €</td>
+            <td>
+                <button onclick="changeQuantity('${item.id}', -1)">-</button>
+                ${item.quantity}
+                <button onclick="changeQuantity('${item.id}', 1)">+</button>
+            </td>
+            <td>${itemTotal.toFixed(2)} €</td>
+            <td><button class="btn btn-danger" onclick="removeFromCart('${item.id}')">X</button></td>
+        `;
+        cartItemsTable.appendChild(tr);
+    });
+
+    totalSpan.innerText = grandTotal.toFixed(2);
+}
+
+function checkout() {
+    if (cart.length === 0) return;
+    window.location.href = cart[0].stripeLink;
+}
+
+// Initialisation au chargement de la page
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartBadge();
+    renderEshopPage();
+    renderCartPage();
+});
