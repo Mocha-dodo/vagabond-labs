@@ -5,7 +5,7 @@ const products = [
         name: 'Impression PLA 50g',
         price: 5.00,
         description: 'Impression 3D sur-mesure en PLA (50g)',
-        image: './images/p1.jpg',
+        image: 'images/p1.jpg',
         stripeLink: 'https://buy.stripe.com/test_1'
     },
     {
@@ -13,7 +13,7 @@ const products = [
         name: 'Kit Électronique Test',
         price: 15.00,
         description: 'Composants pour prototypage rapide',
-        image: './images/p2.jpg',
+        image: 'images/p2.jpg',
         stripeLink: 'https://buy.stripe.com/test_2'
     },
     {
@@ -21,7 +21,7 @@ const products = [
         name: 'Consulting R&D (1h)',
         price: 50.00,
         description: 'Session d\'étude technique de 1h',
-        image: './images/p3.jpg',
+        image: 'images/p3.jpg',
         stripeLink: 'https://buy.stripe.com/test_3'
     }
 ];
@@ -87,7 +87,7 @@ function renderEshopPage() {
         card.className = 'product-card';
         card.innerHTML = `
             <div>
-                <img src="${p.image}" alt="${p.name}" class="product-img" onerror="this.style.display='none'; console.error('Image introuvable :', this.src);">
+                <img src="${p.image}" alt="${p.name}" class="product-img">
                 <h3>${p.name}</h3>
                 <p>${p.description}</p>
                 <p class="price">${p.price.toFixed(2)} €</p>
