@@ -159,3 +159,13 @@ footer {
     border-radius: 4px;
     margin-bottom: 10px;
 }
+
+/* Cache tous les onglets par défaut */
+.tab-content {
+    display: none;
+}
+
+/* Affiche uniquement l'onglet actif */
+.tab-content.active {
+    display: block;
+}
