@@ -129,8 +129,6 @@ function renderCartPage() {
     const cartContainer = document.getElementById('cart-container');
     const emptyMsg = document.getElementById('cart-empty-msg');
     const cartItemsTable = document.getElementById('cart-items');
-
-    // Éléments d'affichage des totaux
     const totalSpan = document.getElementById('cart-total');
 
     if (!cartContainer) return;
@@ -145,12 +143,11 @@ function renderCartPage() {
     emptyMsg.style.display = 'none';
     cartItemsTable.innerHTML = '';
 
-    let subtotal = 0;
+    let grandTotal = 0; // Réinitialisation du total
 
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
-
-        subtotal += itemTotal;
+        grandTotal += itemTotal; // Incrémentation du total pour chaque article
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -167,6 +164,7 @@ function renderCartPage() {
         cartItemsTable.appendChild(tr);
     });
 
+    // Mise à jour de l'affichage du total général
     if (totalSpan) totalSpan.innerText = grandTotal.toFixed(2);
 }
 
