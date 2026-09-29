@@ -9,8 +9,12 @@ const products = [
 
     fullDescription: `
     <p>Ce support a été conçu...</p>
-    <h3>Conception</h3>
-    <p>...</p>
+    <h3>Caractéristiques</h3>
+    <p>Dimensions : x*x*xcm</p>
+    <p>Support Modélisé dans le 3D de la manette PS5 le support n est pas adapté pour un autre type de manette</p>
+    <p>Personnalisation disponible, contactez moi en MP</p>
+
+
     <img src="images/support_detail.jpg"
          class="product-description-image">
     <h3>Fabrication</h3>
