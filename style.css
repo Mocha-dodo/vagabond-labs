@@ -169,3 +169,28 @@ footer {
 .tab-content.active {
     display: block;
 }
+
+
+/* NAVIGATION DES ATELIERS */
+.atelier-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.atelier-btn {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.atelier-btn:hover,
+.atelier-btn.active {
+    background-color: #333;
+    color: #fff;
+}
