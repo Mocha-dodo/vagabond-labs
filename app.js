@@ -93,6 +93,7 @@ function updateCartBadge() {
     }
 }
 
+
 let selectedAtelier = 'support';
 
 function selectAtelier(atelier, element) {
@@ -106,7 +107,6 @@ function selectAtelier(atelier, element) {
 
     renderEshopPage();
 }
-
 
 function renderEshopPage() {
     const grid = document.getElementById('product-list');

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Ateliers Vagabonds</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Les Ateliers Vagabonds</h1>
+        <p class="subtitle">Immaginer => Fabriquer</p>
+    </header>
+
+    <!-- NAVIGATION PAR ONGLETS -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#" class="nav-link active" onclick="showTab('accueil', this)">Accueil</a></li>
+            <li><a href="#" class="nav-link" onclick="showTab('eshop', this)">E-Shop</a></li>
+            <li><a href="#" class="nav-link" onclick="showTab('panier', this)">Panier (<span id="cart-count">0</span>)</a></li>
+            <li><a href="#" class="nav-link" onclick="showTab('apropos', this)">À propos</a></li>
+        </ul>
+    </nav>
+
+    <!-- TAB ACCUEIL -->
+    <section id="accueil" class="tab-content active">
+        <h2>Description de Vagabond</h2>
+        <p>Imaginer, dessiner, fabriquer.</p>
+
+        <p>Les Ateliers Vagabonds sont des ateliers indépendants basés à Toulouse qui conçoivent et fabriquent leurs propres créations. </p>
+        <p>Nous proposons 3 ateliers sur le site :</p>
+        <p>- Les supports de manettes</p>
+        <p>- La personalisation textile</p>
+        <p>- Les objets pratiques</p>
+        <p> </p>
+        <p>Pour toute question n'hésitez pas à nous contacter ;)</p>
+
+
+        <h2>Les actualités des ateliers</h2>
+        <ul>
+            <li>
+                <strong>29 sept - Ouverture du compte insta</strong><br>
+                Enfin les choses sérieuses commencent !<br>
+                <span>Ahlala va falloir assurer ><</span>
+            </li>
+            <li>
+                <strong>27 sept - Publication du support PS5</strong><br>
+                Impressions type, pour montrer les capacités de notre parc machine.<br>
+                <span class="price">Prix indicatif : 1€/10-20g. Matériaux disponibles : PLA, ASA, PETG</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- TAB E-SHOP -->
+    <section id="eshop" class="tab-content">
+        <h2>Boutique en ligne</h2>
+        <p>Découvrez nos objets et prestations prêts à commander.</p>
+        <div class="product-grid" id="product-list">
+            <!-- Les produits avec leurs images seront générés ici par app.js -->
+        </div>
+    </section>
+
+    <!-- TAB PANIER -->
+    <section id="panier" class="tab-content">
+        <h2>Votre Panier</h2>
+        <div id="cart-empty-msg">Votre panier est actuellement vide.</div>
+        <div id="cart-container" style="display: none;">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix U.</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Généré par JS -->
+                </tbody>
+            </table>
+
+            <div class="cart-summary" style="text-align: right; margin-top: 15px;">
+                <h3>Total TTC : <span id="cart-total">0.00</span> €</h3>
+            </div>
+
+            <div style="text-align: right; margin-top: 20px;">
+                <button class="btn" onclick="checkout()">Payer la commande</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAB A PROPOS -->
+    <section id="apropos" class="tab-content">
+        <h2>À propos</h2>
+        <p>Vagabond Labs est né de la passion pour l'innovation et le matériel informatique de pointe. Nous mettons nos compétences au service de la création d'outils numériques uniques et performants.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>
+    </footer>
+</div>
+
+<!-- L'appel unique vers le fichier JS externe avec forçage du cache ?v=2 -->
+<script src="app.js?v=2"></script>
+</body>
+</html>

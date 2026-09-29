@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Shop - Vagabond Labs</title>
+    <title>E-Shop - Les Ateliers Vagabonds</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
+
     <header>
-        <h1>Vagabond Labs</h1>
-        <p class="subtitle">Entreprise de bureau d'étude en électronique</p>
+        <h1>Les Ateliers Vagabonds</h1>
+        <p class="subtitle">Imaginer → Fabriquer</p>
     </header>
 
     <nav class="main-nav">
@@ -23,34 +25,35 @@
         </ul>
     </nav>
 
-<section>
-    <h2>Boutique en ligne</h2>
-    <p>Découvrez nos créations.</p>
+    <section>
+        <h2>Boutique en ligne</h2>
+        <p>Découvrez nos créations.</p>
 
-    <div class="atelier-nav">
-        <button class="atelier-btn active" onclick="selectAtelier('support', this)">
-            Supports
-        </button>
+        <div class="atelier-nav">
+            <button class="atelier-btn active" onclick="selectAtelier('support', this)">
+                Supports
+            </button>
 
-        <button class="atelier-btn" onclick="selectAtelier('textile', this)">
-            Textile
-        </button>
+            <button class="atelier-btn" onclick="selectAtelier('textile', this)">
+                Textile
+            </button>
 
-        <button class="atelier-btn" onclick="selectAtelier('objets', this)">
-            Objets pratiques
-        </button>
-    </div>
+            <button class="atelier-btn" onclick="selectAtelier('objets', this)">
+                Objets pratiques
+            </button>
+        </div>
 
-    <div class="product-grid" id="product-list">
-        <!-- Injecté par app.js -->
-    </div>
-</section>
+        <div class="product-grid" id="product-list">
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>
+        <p>&copy; 2026 Les Ateliers Vagabonds. Tous droits réservés.</p>
     </footer>
+
 </div>
 
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
+
 </body>
 </html>
