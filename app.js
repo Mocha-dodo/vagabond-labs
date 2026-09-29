@@ -93,21 +93,23 @@ function addToCart(productId) {
     alert(`${product.name} ajouté au panier !`);
 }
 
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
+function removeFromCart(cartIndex) {
+    cart.splice(cartIndex, 1);
     saveCart();
 }
 
-function changeQuantity(productId, delta) {
-    const item = cart.find(i => i.id === productId);
-    if (item) {
-        item.quantity += delta;
-        if (item.quantity <= 0) {
-            removeFromCart(productId);
-        } else {
-            saveCart();
-        }
+function changeQuantity(cartIndex, delta) {
+    const item = cart[cartIndex];
+
+    if (!item) return;
+
+    item.quantity += delta;
+
+    if (item.quantity <= 0) {
+        cart.splice(cartIndex, 1);
     }
+
+    saveCart();
 }
 
 function updateCartBadge() {
@@ -245,11 +247,21 @@ function addConfiguredProduct(productId) {
         }
     });
 
-    cart.push({
-        ...product,
-        quantity: 1,
-        selectedOptions: selectedOptions
-    });
+    // Cherche une ligne ayant exactement les mêmes options
+    const existing = cart.find(item =>
+        item.id === productId &&
+        JSON.stringify(item.selectedOptions || {}) === JSON.stringify(selectedOptions)
+    );
+
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({
+            ...product,
+            quantity: 1,
+            selectedOptions: selectedOptions
+        });
+    }
 
     saveCart();
 
@@ -299,11 +311,12 @@ function renderCartPage() {
 
     let grandTotal = 0; // Réinitialisation du total
 
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
         grandTotal += itemTotal; // Incrémentation du total pour chaque article
 
         const tr = document.createElement('tr');
+
         tr.innerHTML = `
             <td>
                 <strong>${item.name}</strong>
@@ -325,14 +338,24 @@ function renderCartPage() {
             </td>
 
             <td>${item.price.toFixed(2)} €</td>
+
             <td>
-                <button onclick="changeQuantity('${item.id}', -1)">-</button>
+                <button onclick="changeQuantity(${index}, -1)">-</button>
                 ${item.quantity}
-                <button onclick="changeQuantity('${item.id}', 1)">+</button>
+                <button onclick="changeQuantity(${index}, 1)">+</button>
             </td>
+
             <td>${itemTotal.toFixed(2)} €</td>
-            <td><button class="btn btn-danger" onclick="removeFromCart('${item.id}')">X</button></td>
+
+            <td>
+                <button
+                    class="btn btn-danger"
+                    onclick="removeFromCart(${index})">
+                    X
+                </button>
+            </td>
         `;
+
         cartItemsTable.appendChild(tr);
     });
 
