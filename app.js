@@ -167,6 +167,8 @@ function showProduct(productId) {
     const grid = document.getElementById('product-list');
     if (!grid) return;
 
+    grid.classList.add('product-detail-view');
+
     grid.innerHTML = `
         <button class="product-back" onclick="renderEshopPage()">
         ← Retour aux produits
@@ -190,7 +192,7 @@ function showProduct(productId) {
             </div>
             <div class="product-description">
                 <h2>Description</h2>
-                <p>${product.fullDescription || product.description}</p>
+                ${product.fullDescription || `<p>${product.description}</p>`}
             </div>
         </div>
     `;
