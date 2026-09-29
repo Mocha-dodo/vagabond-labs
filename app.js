@@ -2,8 +2,8 @@
 const products = [
     {
         id: 'p1',
-        name: 'Impression PLA 50g',
-        price: 5.00,
+        name: 'Support adapté PS5',
+        price: 12.90,
         description: 'Impression 3D sur-mesure en PLA (50g)',
         image: 'images/p1.jpg',
         weight: 50,
