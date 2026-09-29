@@ -9,7 +9,7 @@ const products = [
         image: 'images/support_1.jpg',
         weight: 100,
         stripeLink: 'https://buy.stripe.com/support_1'
-    }
+    },
 
     {
         id: 'textile_1',
