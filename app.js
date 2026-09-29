@@ -1,15 +1,27 @@
 // --- CATALOGUE PRODUITS ---
 const products = [
-    {
-        id: 'support_1',
-        atelier: "support",
-        name: 'Support adapté PS5',
-        price: 12.90,
-        description: 'Impression 3D avec logo personnalisable',
-        image: 'images/support_1.jpg',
-        weight: 100,
-        stripeLink: 'https://buy.stripe.com/support_1'
-    },
+{
+    id: 'support_1',
+    atelier: 'support',
+    name: 'Support adapté PS5',
+    price: 12.90,
+    description: 'Impression 3D avec logo personnalisable',
+    fullDescription: 'Description complète de ton produit ici...',
+    image: 'images/support_1.jpg',
+    weight: 100,
+    stripeLink: 'https://buy.stripe.com/support_1',
+
+    options: [
+        {
+            name: 'Couleur',
+            choices: ['Noir', 'Blanc', 'Rouge']
+        },
+        {
+            name: 'Finition',
+            choices: ['Standard', 'Premium']
+        }
+    ]
+},
 
     {
         id: 'textile_1',
@@ -23,7 +35,7 @@ const products = [
     },
     {
         id: 'objet_1',
-        atelier: "objet pratique",
+        atelier: "objets",
         name: 'Kit Électronique Test',
         price: 15.00,
         description: 'Composants pour prototypage rapide',
@@ -122,6 +134,8 @@ function renderEshopPage() {
         const card = document.createElement('div');
         card.className = 'product-card';
 
+        card.onclick = () => showProduct(p.id);
+
         card.innerHTML = `
             <div>
                 <img src="${p.image}" alt="${p.name}" class="product-img">
@@ -129,15 +143,97 @@ function renderEshopPage() {
                 <p>${p.description}</p>
                 <p class="price">${p.price.toFixed(2)} €</p>
             </div>
-            <button class="btn" onclick="addToCart('${p.id}')">
-                Ajouter au panier
-            </button>
         `;
 
         grid.appendChild(card);
     });
 }
 
+function showProduct(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const grid = document.getElementById('product-list');
+    if (!grid) return;
+
+    grid.innerHTML = `
+        <button class="btn" onclick="renderEshopPage()">
+            ← Retour aux produits
+        </button>
+
+        <div class="product-detail">
+            <img src="${product.image}" class="product-img">
+
+            <h2>${product.name}</h2>
+
+            <p>${product.fullDescription || product.description}</p>
+
+            <p class="price">
+                ${product.price.toFixed(2)} €
+            </p>
+
+            <div id="product-options"></div>
+
+            <button class="btn" onclick="addConfiguredProduct('${product.id}')">
+                Ajouter au panier
+            </button>
+        </div>
+    `;
+
+    renderProductOptions(product);
+}
+
+function renderProductOptions(product) {
+    const container = document.getElementById('product-options');
+    if (!container || !product.options) return;
+
+    product.options.forEach((option, index) => {
+
+        const label = document.createElement('label');
+        label.textContent = option.name;
+
+        const select = document.createElement('select');
+        select.id = `product-option-${index}`;
+
+        option.choices.forEach(choice => {
+            const optionElement = document.createElement('option');
+
+            optionElement.value = choice;
+            optionElement.textContent = choice;
+
+            select.appendChild(optionElement);
+        });
+
+        container.appendChild(label);
+        container.appendChild(select);
+    });
+}
+
+
+function addConfiguredProduct(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const selectedOptions = {};
+
+    product.options?.forEach((option, index) => {
+        const select = document.getElementById(`product-option-${index}`);
+
+        if (select) {
+            selectedOptions[option.name] = select.value;
+        }
+    });
+
+    cart.push({
+        ...product,
+        quantity: 1,
+        selectedOptions: selectedOptions
+    });
+
+    saveCart();
+
+    alert(`${product.name} ajouté au panier !`);
+}
 
 // --- NAVIGATION PAR ONGLETS ---
 function showTab(tabId, element) {
