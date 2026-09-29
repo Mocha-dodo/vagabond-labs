@@ -23,13 +23,28 @@
         </ul>
     </nav>
 
-    <section>
-        <h2>Boutique en ligne</h2>
-        <p>Découvrez nos objets et prestations prêts à commander.</p>
-        <div class="product-grid" id="product-list">
-            <!-- Injecté par app.js -->
-        </div>
-    </section>
+<section>
+    <h2>Boutique en ligne</h2>
+    <p>Découvrez nos créations.</p>
+
+    <div class="atelier-nav">
+        <button class="atelier-btn active" onclick="selectAtelier('support', this)">
+            Supports
+        </button>
+
+        <button class="atelier-btn" onclick="selectAtelier('textile', this)">
+            Textile
+        </button>
+
+        <button class="atelier-btn" onclick="selectAtelier('objets', this)">
+            Objets pratiques
+        </button>
+    </div>
+
+    <div class="product-grid" id="product-list">
+        <!-- Injecté par app.js -->
+    </div>
+</section>
 
     <footer>
         <p>&copy; 2026 Vagabond Labs. Tous droits réservés.</p>

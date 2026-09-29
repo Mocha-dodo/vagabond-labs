@@ -1,7 +1,19 @@
 // --- CATALOGUE PRODUITS ---
 const products = [
     {
-        id: 'p1',
+        id: 'support_1',
+        atelier: "support",
+        name: 'Support adapté PS5',
+        price: 12.90,
+        description: 'Impression 3D avec logo personnalisable',
+        image: 'images/support_1.jpg',
+        weight: 100,
+        stripeLink: 'https://buy.stripe.com/support_1'
+    }
+
+    {
+        id: 'textile_1',
+        atelier: "textile",
         name: 'Support adapté PS5',
         price: 12.90,
         description: 'Impression 3D sur-mesure en PLA (50g)',
@@ -10,7 +22,8 @@ const products = [
         stripeLink: 'https://buy.stripe.com/test_1'
     },
     {
-        id: 'p2',
+        id: 'objet_1',
+        atelier: "objet pratique",
         name: 'Kit Électronique Test',
         price: 15.00,
         description: 'Composants pour prototypage rapide',
@@ -20,6 +33,7 @@ const products = [
     },
     {
         id: 'p3',
+        atelier: "none",
         name: 'Consulting R&D (1h)',
         price: 50.00,
         description: 'Session d\'étude technique de 1h',
@@ -79,15 +93,35 @@ function updateCartBadge() {
     }
 }
 
-// --- RENDU E-SHOP (Si on est sur eshop.html) ---
+let selectedAtelier = 'support';
+
+function selectAtelier(atelier, element) {
+    selectedAtelier = atelier;
+
+    document.querySelectorAll('.atelier-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    element.classList.add('active');
+
+    renderEshopPage();
+}
+
+
 function renderEshopPage() {
     const grid = document.getElementById('product-list');
     if (!grid) return;
 
     grid.innerHTML = '';
-    products.forEach(p => {
+
+    const atelierProducts = products.filter(
+        p => p.atelier === selectedAtelier
+    );
+
+    atelierProducts.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
+
         card.innerHTML = `
             <div>
                 <img src="${p.image}" alt="${p.name}" class="product-img">
@@ -95,8 +129,11 @@ function renderEshopPage() {
                 <p>${p.description}</p>
                 <p class="price">${p.price.toFixed(2)} €</p>
             </div>
-            <button class="btn" onclick="addToCart('${p.id}')">Ajouter au panier</button>
+            <button class="btn" onclick="addToCart('${p.id}')">
+                Ajouter au panier
+            </button>
         `;
+
         grid.appendChild(card);
     });
 }
