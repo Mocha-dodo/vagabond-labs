@@ -6,7 +6,16 @@ const products = [
     name: 'Support adapté PS5',
     price: 12.90,
     description: 'Impression 3D avec logo personnalisable',
-    fullDescription: 'Description complète de ton produit ici...',
+
+    fullDescription: `
+    <p>Ce support a été conçu...</p>
+    <h3>Conception</h3>
+    <p>...</p>
+    <img src="images/support_detail.jpg"
+         class="product-description-image">
+    <h3>Fabrication</h3>
+    <p>...</p>`,
+
     image: 'images/support_1.jpg',
     weight: 100,
     stripeLink: 'https://buy.stripe.com/support_1',
@@ -157,26 +166,40 @@ function showProduct(productId) {
     if (!grid) return;
 
     grid.innerHTML = `
-        <button class="btn" onclick="renderEshopPage()">
-            ← Retour aux produits
+        <button class="product-back" onclick="renderEshopPage()">
+        ← Retour aux produits
         </button>
 
+
         <div class="product-detail">
-            <img src="${product.image}" class="product-img">
+            <div class="product-main">
 
-            <h2>${product.name}</h2>
+                <div class="product-main-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
 
-            <p>${product.fullDescription || product.description}</p>
+                <div class="product-info">
+                    <h2>${product.name}</h2>
 
-            <p class="price">
-                ${product.price.toFixed(2)} €
-            </p>
+                    <p class="price">
+                        ${product.price.toFixed(2)} €
+                    </p>
 
-            <div id="product-options"></div>
+                    <p>${product.description}</p>
 
-            <button class="btn" onclick="addConfiguredProduct('${product.id}')">
-                Ajouter au panier
-            </button>
+                    <div id="product-options"></div>
+
+                    <button class="btn" onclick="addConfiguredProduct('${product.id}')">
+                        Ajouter au panier
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="product-description">
+                <h2>Description</h2>
+                <p>${product.fullDescription || product.description}</p>
+            </div>
         </div>
     `;
 
