@@ -133,6 +133,8 @@ function renderEshopPage() {
     const grid = document.getElementById('product-list');
     if (!grid) return;
 
+    grid.classList.remove('product-detail-view');
+
     grid.innerHTML = '';
 
     const atelierProducts = products.filter(
@@ -169,33 +171,23 @@ function showProduct(productId) {
         <button class="product-back" onclick="renderEshopPage()">
         ← Retour aux produits
         </button>
-
-
         <div class="product-detail">
             <div class="product-main">
-
                 <div class="product-main-image">
                     <img src="${product.image}" alt="${product.name}">
                 </div>
-
                 <div class="product-info">
                     <h2>${product.name}</h2>
-
                     <p class="price">
                         ${product.price.toFixed(2)} €
                     </p>
-
                     <p>${product.description}</p>
-
                     <div id="product-options"></div>
-
                     <button class="btn" onclick="addConfiguredProduct('${product.id}')">
                         Ajouter au panier
                     </button>
                 </div>
-
             </div>
-
             <div class="product-description">
                 <h2>Description</h2>
                 <p>${product.fullDescription || product.description}</p>

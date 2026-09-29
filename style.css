@@ -234,3 +234,11 @@ footer {
 .product-description h2 {
     margin-bottom: 20px;
 }
+
+.product-detail-view {
+    display: block !important;
+}
+
+.product-detail {
+    width: 100%;
+}
