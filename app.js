@@ -305,7 +305,25 @@ function renderCartPage() {
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td><strong>${item.name}</strong></td>
+            <td>
+                <strong>${item.name}</strong>
+
+                ${
+                    item.selectedOptions &&
+                    Object.keys(item.selectedOptions).length > 0
+                    ? `
+                        <div class="cart-options">
+                            ${Object.entries(item.selectedOptions)
+                                .map(([name, value]) => `
+                                    <div>${name} : ${value}</div>
+                                `)
+                                .join('')}
+                        </div>
+                    `
+                    : ''
+                }
+            </td>
+
             <td>${item.price.toFixed(2)} €</td>
             <td>
                 <button onclick="changeQuantity('${item.id}', -1)">-</button>
